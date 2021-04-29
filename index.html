@@ -2,15 +2,96 @@
 <html>
   <head>
     <title>kemily.love</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lora:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
     <style>
       body {
+        background: url("./background.jpg");
+        background-repeat: no-repeat;
+        background-size: cover;
+        font-family: Lora, serif;
+      }
+      div {
         max-width: 800px;
         margin: 3rem auto;
+        position: relative;
+      }
+      h1 {
+        text-align: right;
+        font-weight: 700;
+        margin-bottom: 0.5rem;
       }
     </style>
   </head>
   <body>
-    <h1>kemily.love</h1>
-    <p>...nuff' said</p>
+    <div>
+      <h1>kemily.love</h1>
+      <svg
+        width="800"
+        height="800"
+        view-box="0 0 800 800"
+        id="svg"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <g transform="translate(0 0)">
+          <defs>
+            <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" style="stop-color: #d8bedc; stop-opacity: 1" />
+              <stop
+                offset="100%"
+                style="stop-color: #3e549f; stop-opacity: 1"
+              />
+            </linearGradient>
+            <marker
+              id="triangle"
+              viewBox="0 0 16 16"
+              refX="7"
+              refY="9"
+              markerWidth="9"
+              markerHeight="9"
+              orient="240deg"
+            >
+              <path d="M 0 0 L 16 8 L 0 16 z" style="fill: #d8bedc" />
+            </marker>
+          </defs>
+          <path
+            d="M 700 20 C 400 500, 120 200, 80 400"
+            id="path"
+            stroke="url(#gradient)"
+            stroke-width="3"
+            fill="none"
+            marker-end="url(#triangle)"
+          />
+        </g>
+      </svg>
+    </div>
   </body>
+  <script>
+    const updateArrow = () => {
+      const width = window.innerWidth >= 800 ? 800 : window.innerWidth;
+      const height = window.innerHeight >= 800 ? 800 : window.innerHeight;
+      console.log(window.innerWidth);
+      const svg = document.getElementById("svg");
+      svg.setAttribute("view-box", `0 0 ${width} ${height}`);
+      svg.setAttribute("width", width);
+      svg.setAttribute("height", height);
+      const path = document.getElementById("path");
+      path.setAttribute(
+        "d",
+        `M ${width - 100} 20 C ${width - 300} ${height / 3}, 120 200, ${
+          width > 700 ? width / 40 : width / 3
+        } ${height - 400}`
+      );
+      const triangle = document.getElementById("triangle");
+      triangle.setAttribute(
+        "orient",
+        window.innerWidth > 700 ? "240deg" : "190deg"
+      );
+    };
+    updateArrow();
+    window.addEventListener("resize", () => updateArrow());
+  </script>
 </html>
