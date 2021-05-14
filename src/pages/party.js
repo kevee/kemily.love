@@ -100,6 +100,7 @@ const PartyPage = () => {
         />
       )}
       <Container>
+        <h1>Love Party</h1>
         <TextContainer>
           <TableOfContents
             links={[
