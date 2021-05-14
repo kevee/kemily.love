@@ -12,6 +12,7 @@ const HeaderWrapper = styled.header`
   padding: 1rem 0;
   border-bottom: 1.5px solid black;
   background: ${rose};
+  ${(props) => props.hasHero && `margin-bottom: 0;`}
   ul {
     list-style-type: none;
     margin: 1rem 0 0 0;
@@ -31,10 +32,10 @@ const Kemily = styled(Link)`
   color: black;
 `
 
-const Header = ({ hideKemily = false }) => (
+const Header = ({ hideKemily = false, hasHero = false }) => (
   <>
     <SkipNavLink />
-    <HeaderWrapper>
+    <HeaderWrapper hasHero={hasHero}>
       <Container>
         {!hideKemily && (
           <Kemily to="/">Kevin Miller &amp; Emily Gottlieb</Kemily>

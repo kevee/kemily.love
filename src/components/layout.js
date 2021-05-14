@@ -2,7 +2,7 @@ import * as React from 'react'
 import { Helmet } from 'react-helmet'
 import Header from './header'
 
-const Layout = ({ children, title, hideHeader = false }) => (
+const Layout = ({ children, title, hasHero = false, hideHeader = false }) => (
   <>
     <Helmet
       htmlAttributes={{
@@ -28,7 +28,7 @@ const Layout = ({ children, title, hideHeader = false }) => (
         },
       ]}
     />
-    {!hideHeader && <Header />}
+    {!hideHeader && <Header hasHero={hasHero} />}
     <main>{children}</main>
   </>
 )

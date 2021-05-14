@@ -6,11 +6,15 @@ import Container from '../components/container'
 import Header from '../components/header'
 import { Link } from 'gatsby'
 
-const Kemily = styled.h1`
+const Kemily = styled.div`
   position: absolute;
-  top: 3rem;
-  right: 3rem;
+  top: 0;
+  right: 2rem;
+  bottom: 0;
   z-index: 1;
+  width: 50vw;
+  padding: 1rem;
+  background: rgba(255, 255, 255, 0.5);
 `
 
 const HeroWrapper = styled.div`
@@ -19,7 +23,13 @@ const HeroWrapper = styled.div`
 
 const Hero = () => (
   <HeroWrapper>
-    <Kemily>Kevin Miller &amp; Emily Gottlieb</Kemily>
+    <Kemily>
+      <h1>Kevin &amp; Emily are having a Love Party!!</h1>
+      <p>
+        Please <Link to="/party">join us October 30</Link> for a celebration of
+        love in Big Sur, California.
+      </p>
+    </Kemily>
     <StaticImage
       src="../images/background.jpg"
       alt="A dinosaur"
@@ -31,16 +41,8 @@ const Hero = () => (
 )
 
 const IndexPage = () => (
-  <Layout hideHeader>
+  <Layout hasHero>
     <Hero />
-    <Header hideKemily />
-    <Container>
-      <h1>Kevin &amp; Emily are having a Love Party!!</h1>
-      <p>
-        Please <Link to="/party">join us October 30</Link> for a celebration of
-        love in Big Sur, California.
-      </p>
-    </Container>
   </Layout>
 )
 

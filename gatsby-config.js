@@ -1,3 +1,5 @@
+require('dotenv').config()
+
 module.exports = {
   siteMetadata: {},
   plugins: [
@@ -23,6 +25,19 @@ module.exports = {
       options: {
         fonts: ['Karla:wght@200;300;700', 'Spectral:wght@700'],
         display: 'swap',
+      },
+    },
+    {
+      resolve: 'gatsby-source-airtable',
+      options: {
+        apiKey: process.env.AIRTABLE_KEY,
+        tables: [
+          {
+            baseId: 'appFyLZt7WbjjBrpU',
+            tableName: 'Website photos',
+            tableView: 'Grid view',
+          },
+        ],
       },
     },
     {
