@@ -42,6 +42,10 @@ const Kemily = styled(Link)`
   display: block;
   font-family: Spectral, Georgia, serif;
   text-decoration: none;
+  font-size: 0.9rem;
+  ${breakpoints.small} {
+    font-size: 1rem;
+  }
   &:hover {
     text-decoration: underline;
   }
