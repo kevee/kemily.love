@@ -308,7 +308,7 @@ const PartyPage = () => {
           <p>
             Get{' '}
             <a
-              href={pfeifferDirections.directions}
+              href={loversPointDirections.directions}
               target="_blank"
               rel="noreferrer"
             >
