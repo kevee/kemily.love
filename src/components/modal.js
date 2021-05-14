@@ -21,6 +21,7 @@ const Map = styled.div`
   width: 100%;
   height: 60vh;
   margin: 1.5rem 0;
+  ${(props) => props.extraMargin && `margin-bottom: 3rem;`}
 `
 
 const ModalWrapper = styled.div`
@@ -115,7 +116,7 @@ const MapEmbed = ({ center, zoom, onLoad }) => {
     })
   }, [center, zoom])
 
-  return <Map ref={mapRef} />
+  return <Map extraMargin ref={mapRef} />
 }
 
 export default Modal
