@@ -87,12 +87,12 @@ const MapModal = ({ center, title, zoom, directions, content, onClose }) => {
     <Modal onClose={onClose} title={title}>
       <Map ref={mapRef} />
       <ModalContainer>
-        {content}
         {directions && (
           <a href={directions} target="_blank" rel="noreferrer">
             Driving directions
           </a>
         )}
+        {content}
       </ModalContainer>
     </Modal>
   )
