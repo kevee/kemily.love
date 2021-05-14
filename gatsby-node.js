@@ -1,4 +1,4 @@
-exports.onCreateWebpackConfig = ({ stage, actions, loaders, getConfig }) => {
+exports.onCreateWebpackConfig = ({ stage, actions, loaders }) => {
   const { setWebpackConfig } = actions
 
   if (stage === 'build-html') {
