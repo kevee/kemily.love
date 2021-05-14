@@ -1,7 +1,16 @@
-/**
- * Implement Gatsby's Node APIs in this file.
- *
- * See: https://www.gatsbyjs.com/docs/node-apis/
- */
+exports.onCreateWebpackConfig = ({ stage, actions, loaders, getConfig }) => {
+  const { setWebpackConfig } = actions
 
-// You can delete this file if you're not using it
+  if (stage === 'build-html') {
+    setWebpackConfig({
+      module: {
+        rules: [
+          {
+            test: /mapbox-gl/,
+            use: loaders.null(),
+          },
+        ],
+      },
+    })
+  }
+}
