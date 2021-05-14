@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
 import { Link } from 'gatsby'
 import Container, { TextContainer } from '../components/container'
-import Modal, { MapModal, ModalButton } from '../components/modal'
-import TOC from '../components/toc'
+import { MapModal, ModalButton, MapEmbed } from '../components/modal'
+import TableOfContents from '../components/toc'
 import Layout from '../components/layout'
 
 const pfeifferDirections = {
@@ -37,6 +37,56 @@ const loversPointDirections = {
   ),
 }
 
+const mapMarkers = {
+  type: 'FeatureCollection',
+  features: [
+    {
+      type: 'Feature',
+      properties: {
+        description: 'Main Entrance',
+        icon: 'car-15',
+      },
+      geometry: {
+        type: 'Point',
+        coordinates: [-121.787326, 36.252845],
+      },
+    },
+    {
+      type: 'Feature',
+      properties: {
+        description: 'Love Party, Picnic Area C',
+        icon: 'picnic-site-15',
+      },
+      geometry: {
+        type: 'Point',
+        coordinates: [-121.776808, 36.244851],
+      },
+    },
+    {
+      type: 'Feature',
+      properties: {
+        description: 'Reserved campgrounds',
+        icon: 'campsite-15',
+      },
+      geometry: {
+        type: 'Point',
+        coordinates: [-121.772844, 36.245212],
+      },
+    },
+    {
+      type: 'Feature',
+      properties: {
+        description: 'Parking',
+        icon: 'car-15',
+      },
+      geometry: {
+        type: 'Point',
+        coordinates: [-121.775642, 36.244769],
+      },
+    },
+  ],
+}
+
 const PartyPage = () => {
   const [currentMap, setCurrentMap] = useState(false)
   return (
@@ -51,7 +101,7 @@ const PartyPage = () => {
       )}
       <Container>
         <TextContainer>
-          <TOC
+          <TableOfContents
             links={[
               <Link to="#plans">Plans</Link>,
               <Link to="#lodging">Lodging</Link>,
@@ -211,6 +261,70 @@ const PartyPage = () => {
           </p>
           <h2 id="map">Map &amp; Directions</h2>
         </TextContainer>
+        <TextContainer>
+          <h3>Love Party</h3>
+          <p>
+            Get{' '}
+            <a
+              href={pfeifferDirections.directions}
+              target="_blank"
+              rel="noreferrer"
+            >
+              driving directions to Pfeiffer Big Sur State Park
+            </a>{' '}
+            for our Love Party <strong>October 29 — 30</strong>. You can also{' '}
+            <a href="https://www.parks.ca.gov/pages/570/files/PfeifferBigSurSPFinalWebLayout012016.pdf">
+              download a helpful brochure with a detailed map
+            </a>
+            .
+          </p>
+        </TextContainer>
+        <MapEmbed
+          center={[-121.779131, 36.2483]}
+          zoom={14}
+          onLoad={(map) => {
+            map.addSource('places', {
+              type: 'geojson',
+              data: mapMarkers,
+            })
+
+            map.addLayer({
+              id: 'poi-labels',
+              type: 'symbol',
+              source: 'places',
+              layout: {
+                'text-field': ['get', 'description'],
+                'text-variable-anchor': ['top', 'bottom', 'left', 'right'],
+                'text-radial-offset': 0.5,
+                'text-justify': 'auto',
+                'icon-image': ['get', 'icon'],
+              },
+            })
+          }}
+        />
+        <TextContainer>
+          <h3>Lover's Point</h3>
+          <p>
+            Get{' '}
+            <a
+              href={pfeifferDirections.directions}
+              target="_blank"
+              rel="noreferrer"
+            >
+              driving directions to Lover's Point
+            </a>{' '}
+            for our Halloween float on <strong>October 31</strong>.
+          </p>
+        </TextContainer>
+        <MapEmbed
+          center={loversPointDirections.center}
+          zoom={12}
+          onLoad={(map, mapboxgl) => {
+            new mapboxgl.Marker()
+              .setLngLat(loversPointDirections.center)
+              .addTo(map)
+          }}
+        />
       </Container>
     </Layout>
   )

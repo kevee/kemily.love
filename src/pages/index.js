@@ -2,8 +2,6 @@ import * as React from 'react'
 import { StaticImage } from 'gatsby-plugin-image'
 import styled from '@emotion/styled'
 import Layout from '../components/layout'
-import Container from '../components/container'
-import Header from '../components/header'
 import { Link } from 'gatsby'
 
 const Kemily = styled.div`

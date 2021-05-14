@@ -30,12 +30,13 @@ module.exports = {
     {
       resolve: 'gatsby-source-airtable',
       options: {
-        apiKey: process.env.AIRTABLE_KEY,
+        apiKey: process.env.AIRTABLE_KEMILY,
         tables: [
           {
             baseId: 'appFyLZt7WbjjBrpU',
             tableName: 'Website photos',
             tableView: 'Grid view',
+            mapping: { Photos: 'fileNode' },
           },
         ],
       },

@@ -3,19 +3,18 @@ import styled from '@emotion/styled'
 import { Link } from 'gatsby'
 import { SkipNavLink, SkipNavContent } from '@reach/skip-nav'
 import Container from './container'
-import { rose, green } from '../style/colors'
+import colors from '../style/colors'
 import '@reach/skip-nav/styles.css'
 
 const HeaderWrapper = styled.header`
-  font-family: Spectral, Georgia, serif;
   margin-bottom: 2rem;
   padding: 1rem 0;
   border-bottom: 1.5px solid black;
-  background: ${rose};
+  background: ${colors.rose};
   ${(props) => props.hasHero && `margin-bottom: 0;`}
   ul {
     list-style-type: none;
-    margin: 1rem 0 0 0;
+    margin: 0.5rem 0 0 0;
     padding: 0;
     display: flex;
     li {
@@ -24,12 +23,25 @@ const HeaderWrapper = styled.header`
       &:last-child {
         margin-right: 0;
       }
+      margin-bottom: 0;
+    }
+  }
+  a {
+    color: black;
+    text-decoration: none;
+    &:hover {
+      text-decoration: underline;
     }
   }
 `
 
 const Kemily = styled(Link)`
   color: black;
+  font-family: Spectral, Georgia, serif;
+  text-decoration: none;
+  &:hover {
+    text-decoration: underline;
+  }
 `
 
 const Header = ({ hideKemily = false, hasHero = false }) => (

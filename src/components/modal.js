@@ -2,7 +2,6 @@ import React, { useEffect, useRef } from 'react'
 import mapboxgl from 'mapbox-gl'
 import styled from '@emotion/styled'
 import breakpoints from '../style/breakpoints'
-import Container from './container'
 import 'mapbox-gl/dist/mapbox-gl.css'
 
 mapboxgl.accessToken =
@@ -98,6 +97,27 @@ const MapModal = ({ center, title, zoom, directions, content, onClose }) => {
   )
 }
 
+const MapEmbed = ({ center, zoom, onLoad }) => {
+  const mapRef = useRef()
+
+  useEffect(() => {
+    const map = new mapboxgl.Map({
+      container: mapRef.current,
+      style: `mapbox://styles/keveemiller/ckooaqodv0qid17qtnai9b6an`,
+      center: center,
+      zoom: zoom,
+      minZoom: 3.5,
+      maxZoom: 18,
+    })
+    map.addControl(new mapboxgl.NavigationControl(), 'top-left')
+    map.on('load', () => {
+      onLoad(map, mapboxgl)
+    })
+  }, [center, zoom])
+
+  return <Map ref={mapRef} />
+}
+
 export default Modal
 
-export { ModalButton, MapModal }
+export { ModalButton, MapModal, MapEmbed }

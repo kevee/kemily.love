@@ -23,7 +23,7 @@ const TOCWrapper = styled.div`
   }
 `
 
-const TOC = ({ links }) => (
+const TableOfContents = ({ links }) => (
   <TOCWrapper>
     <ul>
       {links.map((link) => (
@@ -33,4 +33,4 @@ const TOC = ({ links }) => (
   </TOCWrapper>
 )
 
-export default TOC
+export default TableOfContents

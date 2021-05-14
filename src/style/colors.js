@@ -1,5 +1,5 @@
 const colors = {
-  rose: '#B14585',
+  rose: '#daacc7',
   green: '#b4e0cf',
 }
 
