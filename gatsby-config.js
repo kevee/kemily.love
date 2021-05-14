@@ -7,7 +7,7 @@ module.exports = {
     'gatsby-plugin-image',
     'gatsby-transformer-sharp',
     'gatsby-plugin-sharp',
-    /*{
+    {
       resolve: 'gatsby-plugin-manifest',
       options: {
         name: 'kemily.love',
@@ -16,9 +16,9 @@ module.exports = {
         background_color: '#663399',
         theme_color: '#663399',
         display: 'minimal-ui',
-        icon: 'src/images/gatsby-icon.png',
+        icon: 'src/images/icon.png',
       },
-    },*/
+    },
     'gatsby-plugin-gatsby-cloud',
     {
       resolve: 'gatsby-plugin-google-fonts',
