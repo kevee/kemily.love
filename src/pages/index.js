@@ -38,6 +38,10 @@ const Hero = () => (
         Please <Link to="/party">join us October 30</Link> for a celebration of
         love in Big Sur, California.
       </p>
+      <p>
+        Be part of our Love Party regardless of where you are by{' '}
+        <Link to="/chuppah">adding to our chuppah</Link>.
+      </p>
     </Kemily>
   </HeroWrapper>
 )

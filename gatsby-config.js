@@ -21,13 +21,6 @@ module.exports = {
     },
     'gatsby-plugin-gatsby-cloud',
     {
-      resolve: 'gatsby-plugin-google-fonts',
-      options: {
-        fonts: ['Karla:wght@200;300;700', 'Spectral:wght@700'],
-        display: 'swap',
-      },
-    },
-    {
       resolve: 'gatsby-source-airtable',
       options: {
         apiKey: process.env.AIRTABLE_KEMILY,

@@ -110,7 +110,7 @@ const PartyPage = () => {
             ]}
           />
           <h2 id="plans">Plans</h2>
-          <h3>October 29: Day before the Love Party</h3>
+          <h3>Friday, October 29: Day before the Love Party</h3>
           <p>
             We welcome you to arrive in Big Sur the day before the Love Party.
             Campers will be able to check into the campsites at{' '}
@@ -121,15 +121,15 @@ const PartyPage = () => {
             >
               Pfeiffer Big Sur State Park
             </ModalButton>{' '}
-            after [x hours]. We will plan a short afternoon hike nearby for
-            anyone who wants to join.
+            after 2pm. We will plan a short afternoon hike nearby for anyone who
+            wants to join.
           </p>
 
           <p>
             Kevin and Emily will be staying at the campground. Come by for
             pumpkin carving and marshmallow roasting after sunset.
           </p>
-          <h3>October 30: Love Party Day</h3>
+          <h3>Saturday, October 30: Love Party Day</h3>
           <h4>When and where</h4>
 
           <p>
@@ -172,7 +172,7 @@ const PartyPage = () => {
             <li>A Halloween costume </li>
             <li>Camping chairs</li>
           </ul>
-          <h3>October 31: Love Party Hallowedding Float</h3>
+          <h3>Sunday, October 31: Love Party Hallowedding Float</h3>
           <p>
             We will pack up the party and head to{' '}
             <ModalButton

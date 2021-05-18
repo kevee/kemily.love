@@ -27,7 +27,13 @@ const Layout = ({ children, title, hasHero = false, hideHeader = false }) => (
           content: 'website',
         },
       ]}
-    />
+    >
+      <link rel="preconnect" href="https://fonts.gstatic.com" />
+      <link
+        href="https://fonts.googleapis.com/css2?family=Karla:wght@300;400;700&family=Spectral:wght@400;700&display=swap"
+        rel="stylesheet"
+      />
+    </Helmet>
     {!hideHeader && <Header hasHero={hasHero} />}
     <main>{children}</main>
   </>
