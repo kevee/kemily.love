@@ -1,10 +1,12 @@
 import React, { useState } from 'react'
 import styled from '@emotion/styled'
+// import { jsx, css, keyframes } from '@emotion/react'
 import { Link } from 'gatsby'
 import { SkipNavLink, SkipNavContent } from '@reach/skip-nav'
 import Container from './container'
 import colors from '../style/colors'
 import breakpoints from '../style/breakpoints'
+import bird from '../images/header-bird.gif'
 import '@reach/skip-nav/styles.css'
 
 const HeaderWrapper = styled.header`
@@ -43,6 +45,8 @@ const Kemily = styled(Link)`
   font-family: Spectral, Georgia, serif;
   text-decoration: none;
   font-size: 0.9rem;
+  z-index: 2;
+  position: relative;
   ${breakpoints.small} {
     font-size: 1rem;
   }
@@ -64,10 +68,48 @@ const MobileButton = styled.button`
 
 const Nav = styled.nav`
   display: none;
+  z-index: 2;
+  position: relative;
   ${breakpoints.small} {
     display: block;
   }
   ${(props) => props.expanded && `display: block;`}
+`
+/*
+const fly = keyframes`
+  0% {
+    transform: translate3d(-100px,0,0);
+  }
+
+  50% {
+    transform: translate3d(${
+      typeof window !== 'undefined' ? window.innerWidth / 2 : '500'
+    }px,40px,0);
+  }
+
+  100% {
+    transform: translate3d(${
+      typeof window !== 'undefined' ? window.innerWidth + 90 : '5000'
+    }px,0,0);
+  }
+`
+
+const Bird = styled.img`
+  position: absolute;
+  animation: ${fly} 15s ease infinite;
+  width: 50px;
+`*/
+
+const Bird = styled.img`
+  position: absolute;
+  top: 1rem;
+  left: 0;
+  display: none;
+  opacity: 0.3;
+  z-index: 1;
+  ${breakpoints.large} {
+    display: block;
+  }
 `
 
 const Header = ({ hideKemily = false, hasHero = false }) => {
@@ -76,6 +118,7 @@ const Header = ({ hideKemily = false, hasHero = false }) => {
     <>
       <SkipNavLink />
       <HeaderWrapper hasHero={hasHero}>
+        <Bird src={bird} />
         <Container>
           {!hideKemily && (
             <Kemily to="/">Kevin Miller &amp; Emily Gottlieb</Kemily>
