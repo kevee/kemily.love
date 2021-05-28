@@ -31,6 +31,14 @@ module.exports = {
             tableView: 'Grid view',
             mapping: { Photos: 'fileNode' },
           },
+          {
+            baseId: 'appFyLZt7WbjjBrpU',
+            tableName: 'RSVP',
+            tableView: 'Published photos',
+            mapping: {
+              Photos: 'fileNode',
+            },
+          },
         ],
       },
     },

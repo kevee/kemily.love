@@ -22,7 +22,7 @@ const ImageMasonry = styled(Masonry)`
 const PhotosPage = () => {
   const data = useStaticQuery(graphql`
     {
-      allAirtable(filter: { table: { eq: "Website photos" } }) {
+      allAirtable(filter: { table: { in: ["RSVP", "Website photos"] } }) {
         nodes {
           data {
             Photos {
@@ -44,7 +44,9 @@ const PhotosPage = () => {
   `)
   let photos = []
   data.allAirtable.nodes.forEach(({ data }) => {
-    photos = [...photos, ...data.Photos.localFiles]
+    if (typeof data.Photos !== 'undefined' && data.Photos) {
+      photos = [...photos, ...data.Photos.localFiles]
+    }
   })
 
   return (
