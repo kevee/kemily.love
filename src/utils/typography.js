@@ -1,4 +1,5 @@
 import Typography from 'typography'
+import colors from '../style/colors'
 
 const typography = new Typography({
   baseFontSize: '24px',
@@ -9,6 +10,9 @@ const typography = new Typography({
   overrideStyles: ({ adjustFontSizeTo, rhythm }, options, styles) => ({
     li: {
       marginBottom: rhythm(1 / 4),
+    },
+    'a, a:visited': {
+      color: colors.link,
     },
   }),
 })

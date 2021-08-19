@@ -2,6 +2,7 @@ import React, { useEffect, useRef } from 'react'
 import mapboxgl from 'mapbox-gl'
 import styled from '@emotion/styled'
 import breakpoints from '../style/breakpoints'
+import colors from '../style/colors'
 import 'mapbox-gl/dist/mapbox-gl.css'
 
 mapboxgl.accessToken =
@@ -15,6 +16,12 @@ const ModalButton = styled.button`
   cursor: pointer;
   margin: 0;
   padding: 0;
+  text-align: left;
+  color: ${colors.link};
+  @media print {
+    color: black;
+    text-decoration: none;
+  }
 `
 
 const Map = styled.div`

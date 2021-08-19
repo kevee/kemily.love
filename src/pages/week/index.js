@@ -4,27 +4,50 @@ import Container, { TextContainer } from '../../components/container'
 import Layout from '../../components/layout'
 import { MapModal, ModalButton } from '../../components/modal'
 import styled from '@emotion/styled'
+import { Global, css } from '@emotion/react'
+import breakpoints from '../../style/breakpoints'
 
 const DayHeader = styled.h2`
   margin-bottom: 0.5rem;
   padding-top: 1.5rem;
   border-top: 1.5px solid grey;
+  @media print {
+    border-top: 0;
+  }
+`
+
+const PageBreak = styled.div`
+  page-break-after: always;
 `
 
 const EventHeader = styled.h3`
   margin-top: 1rem;
-  margin-bottom: 0.5rem;
+  margin-bottom: 1rem;
 `
 
-const EventList = styled.ul`
-  list-style-type: none;
-  margin-left: 0;
+const EventList = styled.dl`
+  dt {
+    font-weight: bold;
+    clear: both;
+    margin-bottom: 0;
+    width: 100%;
+    ${breakpoints.large} {
+      width: 150px;
+    }
+  }
+  dd {
+    margin-bottom: 1rem;
+  }
+  div {
+    display: flex;
+    flex-wrap: wrap;
+  }
 `
 
 const RSVPButton = styled(Link)`
   border: 0;
   background: black;
-  color: white;
+  color: white !important;
   cursor: pointer;
   display: inline-block;
   text-decoration: none;
@@ -37,6 +60,7 @@ const Event = ({
   location,
   setLocation,
   time,
+  address,
   rsvp = false,
   children,
 }) => (
@@ -44,32 +68,76 @@ const Event = ({
     <EventHeader>{title}</EventHeader>
     {rsvp && (
       <div>
-        <RSVPButton to="/week/rsvp">Please RSVP</RSVPButton>
+        <RSVPButton to="/week/rsvp" className="print-hide">
+          Please RSVP
+        </RSVPButton>
       </div>
     )}
     <EventList>
       {location && (
-        <li>
-          <strong>Location: </strong>
-          <ModalButton onClick={() => setLocation()}>{location}</ModalButton>
-        </li>
+        <div>
+          <dt>Location:</dt>
+          <dd>
+            <ModalButton onClick={() => setLocation()}>{location}</ModalButton>
+            {address && (
+              <>
+                <br />
+                {address}
+              </>
+            )}
+          </dd>
+        </div>
       )}
       {time && (
-        <li>
-          <strong>Time: </strong>
-          {time}
-        </li>
+        <div>
+          <dt>Time:</dt>
+          <dd>{time}</dd>
+        </div>
       )}
     </EventList>
     {children}
   </>
 )
 
+const PrintHeader = styled.div`
+  display: none;
+`
+
+const PrintButton = styled.button`
+  cursor: pointer;
+  background: black;
+  display: inline-block;
+  padding: 0.5rem;
+  color: white;
+  border: none;
+`
+
 const WeekPage = () => {
   const [currentMap, setCurrentMap] = useState(false)
 
   return (
     <Layout title="Love Week">
+      <Global
+        styles={css`
+          @media print {
+            header,
+            footer {
+              display: none;
+            }
+            .print-hide {
+              display: none !important;
+            }
+            .print-show {
+              display: block !important;
+            }
+            a,
+            a:visited {
+              color: black !important;
+              text-decoration: none !important;
+            }
+          }
+        `}
+      />
       {currentMap && (
         <MapModal
           {...currentMap}
@@ -80,17 +148,31 @@ const WeekPage = () => {
       )}
       <Container>
         <TextContainer>
-          <h1>Love Week</h1>
+          <PrintHeader className="print-show">
+            <h1>Kevin &amp; Emily's Love Week</h1>
+            <p>More at https://kemily.love/week</p>
+          </PrintHeader>
+          <h1 className="print-hide">Love Week</h1>
           <p>
             We are so thrilled that you will be joining us for all or part of
             our Love Week and our Love Party! It is right around the corner and
             we are so excited to share some of our favorite Monterey area
             activities with you all.{' '}
           </p>
+          <p className="print-hide">
+            <PrintButton
+              onClick={() => {
+                window.print()
+              }}
+            >
+              Print this schedule
+            </PrintButton>
+          </p>
           <DayHeader id="oct-23">Saturday, October 23</DayHeader>
           <Event
             title="Potluck dinner"
-            location="Lou and Cheryl’s house, 137 18th Street, Pacific Grove"
+            location="Lou and Cheryl’s house"
+            address="137 18th Street, Pacific Grove, CA"
             rsvp={true}
             setLocation={() => {
               setCurrentMap({
@@ -113,10 +195,12 @@ const WeekPage = () => {
           >
             <p>If you can, bring a dish to share</p>
           </Event>
+          <PageBreak />
           <DayHeader id="oct-24">Sunday, October 24</DayHeader>
           <Event
             title="Kayak or stand-up paddle board"
             location="On the beach in front of Monterey Bay Kayaks"
+            address="693 Del Monte Ave, Monterey, CA 93940"
             setLocation={() => {
               setCurrentMap({
                 center: [-121.888107, 36.60026],
@@ -141,10 +225,12 @@ const WeekPage = () => {
               , 693 Del Monte Avenue, Monterey
             </p>
           </Event>
+          <PageBreak />
           <DayHeader id="oct-25">Monday, October 25</DayHeader>
           <Event
             title="Pickleball tournament"
-            location="Via Paraiso Park, Monterey"
+            location="Via Paraiso Park"
+            address="Herrmann Drive and Via Paraiso, Monterey, CA"
             setLocation={() => {
               setCurrentMap({
                 center: [-121.9055972, 36.5931603],
@@ -164,10 +250,12 @@ const WeekPage = () => {
             </p>
           </Event>
 
+          <PageBreak />
           <DayHeader id="oct-26"> Tuesday, October 26</DayHeader>
           <Event
             title="Bike ride from Fisherman’s Wharf to Marina Dunes"
             location="Fisherman’s Wharf, Monterey"
+            address="1 Old Fisherman’s Wharf, Monterey, CA"
             setLocation={() => {
               setCurrentMap({
                 center: [-121.893424, 36.603621],
@@ -193,10 +281,12 @@ const WeekPage = () => {
             </p>
           </Event>
 
+          <PageBreak />
           <DayHeader id="oct-27">Wednesday, October 27</DayHeader>
           <Event
             title="Water Wednesday, Part 1: surf, boogie board"
-            location="Asilomar State Beach, Pacific Grove"
+            location="Asilomar State Beach"
+            address="Sunset Dr and Asilomar Beach trail, Pacific Grove, CA"
             setLocation={() => {
               setCurrentMap({
                 center: [-121.941165, 36.618833],
@@ -218,6 +308,7 @@ const WeekPage = () => {
             title="Water Wednesday, Part 2: beach bonfire with clam
             bake and pizza dinner"
             location="Carmel State Beach"
+            address="8th Ave and Scenic Rd, Carmel, CA"
             setLocation={() => {
               setCurrentMap({
                 center: [-121.928781, 36.552483],
@@ -240,10 +331,12 @@ const WeekPage = () => {
             </p>
           </Event>
 
+          <PageBreak />
           <DayHeader id="oct-28">Thursday, October 28</DayHeader>
           <Event
             title="Whale watching cruise from Monterey Harbor"
             location="Monterey Bay Whale Watch on Fisherman’s Wharf"
+            address="84 Fishermans Wharf, Monterey, CA"
             rsvp={true}
             setLocation={() => {
               setCurrentMap({
@@ -270,10 +363,12 @@ const WeekPage = () => {
             <p>$50/person</p>
           </Event>
 
+          <PageBreak />
           <DayHeader id="oct-29">Friday, October 29</DayHeader>
           <Event
             title="Hike up Buzzard’s Roost in Big Sur"
             location="Pfeiffer Big Sur State Park, Day Use Parking Lot # 2"
+            address="Pfeiffer Big Sur Rd, Big Sur, CA"
             setLocation={() => {
               setCurrentMap({
                 center: [-121.7812442, 36.2503249],
@@ -305,7 +400,8 @@ const WeekPage = () => {
 
           <Event
             title="Pumpkin carving and marshmallow roasting"
-            location="Campsite #106"
+            location="Pfeiffer Big Sur State Park, Campsite #106"
+            address="Pfeiffer Big Sur Rd, Big Sur, CA"
             setLocation={() => {
               setCurrentMap({
                 center: [-121.772157, 36.246331],
@@ -327,10 +423,12 @@ const WeekPage = () => {
           <p>
             <Link to="/party">The Love Party!</Link> (we’ll see you all there!)
           </p>
+          <PageBreak />
           <DayHeader id="oct-31">Sunday, October 31</DayHeader>
           <Event
             title="Halloween float and brunch picnic"
-            location="Lovers Point Park, Ocean View Boulevard, Pacific Grove, CA"
+            location="Lovers Point Park"
+            address="631 Ocean View Blvd, Pacific Grove, CA"
             setLocation={() => {
               setCurrentMap({
                 center: [-121.916704, 36.626087],
