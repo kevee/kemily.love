@@ -5,6 +5,7 @@ import Layout from '../../components/layout'
 import { MapModal, ModalButton } from '../../components/modal'
 import styled from '@emotion/styled'
 import { Global, css } from '@emotion/react'
+import QRCode from 'react-qr-code'
 import breakpoints from '../../style/breakpoints'
 
 const DayHeader = styled.h2`
@@ -32,11 +33,15 @@ const EventList = styled.dl`
     margin-bottom: 0;
     width: 100%;
     ${breakpoints.large} {
-      width: 150px;
+      width: 20%;
     }
   }
   dd {
     margin-bottom: 1rem;
+    width: 100%;
+    ${breakpoints.large} {
+      width: 80%;
+    }
   }
   div {
     display: flex;
@@ -55,12 +60,23 @@ const RSVPButton = styled(Link)`
   margin-bottom: 0.5rem;
 `
 
+const QrCodeWrapper = styled.div`
+  display: none;
+  @media print {
+    display: block;
+  }
+`
+
 const Event = ({
   title,
   location,
   setLocation,
   time,
   address,
+  alternateLocation,
+  alternateAddress,
+  setAlternateLocation,
+  directions = false,
   rsvp = false,
   children,
 }) => (
@@ -69,7 +85,7 @@ const Event = ({
     {rsvp && (
       <div>
         <RSVPButton to="/week/rsvp" className="print-hide">
-          Please RSVP
+          RSVP here
         </RSVPButton>
       </div>
     )}
@@ -88,6 +104,22 @@ const Event = ({
           </dd>
         </div>
       )}
+      {alternateLocation && (
+        <div>
+          <dt>Alternate location:</dt>
+          <dd>
+            <ModalButton onClick={() => setAlternateLocation()}>
+              {alternateLocation}
+            </ModalButton>
+            {alternateAddress && (
+              <>
+                <br />
+                {alternateAddress}
+              </>
+            )}
+          </dd>
+        </div>
+      )}
       {time && (
         <div>
           <dt>Time:</dt>
@@ -96,6 +128,14 @@ const Event = ({
       )}
     </EventList>
     {children}
+    {directions && (
+      <QrCodeWrapper>
+        <div>
+          <strong>Scan for directions</strong>
+        </div>
+        <QRCode value={directions} size={200} />
+      </QrCodeWrapper>
+    )}
   </>
 )
 
@@ -153,7 +193,7 @@ const WeekPage = () => {
             <p>More at https://kemily.love/week</p>
           </PrintHeader>
           <h1 className="print-hide">Love Week</h1>
-          <p>
+          <p className="print-hide">
             We are so thrilled that you will be joining us for all or part of
             our Love Week and our Love Party! It is right around the corner and
             we are so excited to share some of our favorite Monterey area
@@ -174,6 +214,7 @@ const WeekPage = () => {
             location="Lou and Cheryl’s house"
             address="137 18th Street, Pacific Grove, CA"
             rsvp={true}
+            directions="https://www.google.com/maps/place/137+18th+St,+Pacific+Grove,+CA+93950/data=!4m2!3m1!1s0x808de14f2c38b7bf:0x56f3e9cee3b9a080?sa=X&ved=2ahUKEwj_tsSej7vyAhWTLH0KHdo2DIQQ8gF6BAgLEAE"
             setLocation={() => {
               setCurrentMap({
                 center: [-121.9186859, 36.6230186],
@@ -191,7 +232,7 @@ const WeekPage = () => {
                 ),
               })
             }}
-            time="6pm-whenever!"
+            time="6pm — whenever!"
           >
             <p>If you can, bring a dish to share</p>
           </Event>
@@ -201,6 +242,7 @@ const WeekPage = () => {
             title="Kayak or stand-up paddle board"
             location="On the beach in front of Monterey Bay Kayaks"
             address="693 Del Monte Ave, Monterey, CA 93940"
+            directions="https://www.google.com/maps/dir//monterey+bay+kayaks+monterey+ca/@36.5913751,-121.8906389,15z/data=!3m1!5s0x808de43c840181a9:0xe7c5bbbc4e6af616!4m8!4m7!1m0!1m5!1m1!1s0x808de43c9134103f:0xee1bedb7ac00da4b!2m2!1d-121.8880403!2d36.6005081"
             setLocation={() => {
               setCurrentMap({
                 center: [-121.888107, 36.60026],
@@ -215,7 +257,7 @@ const WeekPage = () => {
                 ),
               })
             }}
-            time="10am - whenever!"
+            time="10am — whenever!"
           >
             <p>
               Watercraft rentals $35-45 (4 hours) from{' '}
@@ -231,6 +273,7 @@ const WeekPage = () => {
             title="Pickleball tournament"
             location="Via Paraiso Park"
             address="Herrmann Drive and Via Paraiso, Monterey, CA"
+            directions="https://www.google.com/maps/dir//Via+Paraiso+Park,+V%C3%ADa+Paraiso,+Monterey,+CA+93940/@36.5931603,-121.9055972,15z/data=!4m16!1m6!3m5!1s0x0:0xff9a068f9c0ffdcc!2sVia+Paraiso+Park!8m2!3d36.5931603!4d-121.9055972!4m8!1m0!1m5!1m1!1s0x808de69c44c67927:0xff9a068f9c0ffdcc!2m2!1d-121.9055972!2d36.5931603!3e2"
             setLocation={() => {
               setCurrentMap({
                 center: [-121.9055972, 36.5931603],
@@ -241,7 +284,7 @@ const WeekPage = () => {
                 content: <></>,
               })
             }}
-            time="9am - 12pm"
+            time="9am — 12pm"
           >
             <p>
               Bring pickleball paddles and balls if you have them! We will
@@ -256,6 +299,7 @@ const WeekPage = () => {
             title="Bike ride from Fisherman’s Wharf to Marina Dunes"
             location="Fisherman’s Wharf, Monterey"
             address="1 Old Fisherman’s Wharf, Monterey, CA"
+            directions="https://www.google.com/maps/dir//Old+Fisherman's+Wharf,+1+Old+Fisherman%E2%80%99s+Wharf,+Monterey,+CA+93940/@36.6037219,-121.8933288,15z/data=!4m16!1m6!3m5!1s0x0:0xdc0b163254a641c7!2sOld+Fisherman's+Wharf!8m2!3d36.6036666!4d-121.893319!4m8!1m0!1m5!1m1!1s0x808de41880edf8cd:0xdc0b163254a641c7!2m2!1d-121.893319!2d36.6036666!3e2"
             setLocation={() => {
               setCurrentMap({
                 center: [-121.893424, 36.603621],
@@ -270,7 +314,7 @@ const WeekPage = () => {
                 ),
               })
             }}
-            time="1pm to whenever!"
+            time="Meet at 1pm"
           >
             <p>
               Bike rentals area available for $40/day from{' '}
@@ -284,9 +328,10 @@ const WeekPage = () => {
           <PageBreak />
           <DayHeader id="oct-27">Wednesday, October 27</DayHeader>
           <Event
-            title="Water Wednesday, Part 1: surf, boogie board"
+            title="Water Wednesday, Part 1: surf, boogie board, snorkel or just splash around!"
             location="Asilomar State Beach"
             address="Sunset Dr and Asilomar Beach trail, Pacific Grove, CA"
+            directions="https://www.google.com/maps/dir//Asilomar+State+Beach,+Sunset+Dr,+Pacific+Grove,+CA+93950/@36.6180088,-121.9419115,15z/data=!4m16!1m6!3m5!1s0x0:0xbd02e27eb1cc42b8!2sAsilomar+State+Beach!8m2!3d36.6180088!4d-121.9419115!4m8!1m0!1m5!1m1!1s0x808de125fdd7c0f5:0xbd02e27eb1cc42b8!2m2!1d-121.9419115!2d36.6180088!3e2"
             setLocation={() => {
               setCurrentMap({
                 center: [-121.941165, 36.618833],
@@ -301,15 +346,9 @@ const WeekPage = () => {
                 ),
               })
             }}
-            time="1pm-6pm"
-          ></Event>
-
-          <Event
-            title="Water Wednesday, Part 2: beach bonfire with clam
-            bake and pizza dinner"
-            location="Carmel State Beach"
-            address="8th Ave and Scenic Rd, Carmel, CA"
-            setLocation={() => {
+            alternateLocation="Carmel State Beach"
+            alternateAddress="8th Ave and Scenic Rd, Carmel, CA"
+            setAlternateLocation={() => {
               setCurrentMap({
                 center: [-121.928781, 36.552483],
                 zoom: 14,
@@ -323,7 +362,54 @@ const WeekPage = () => {
                 ),
               })
             }}
-            time="6pm - whenever!"
+            time="1pm — 6pm"
+          >
+            <p>
+              Board and wetsuit rentals $15-30/day from{' '}
+              <a href="http://onthebeachsurfshop.com/">
+                On the Beach Surf Shop
+              </a>
+              , 693 Lighthouse Ave, Monterey.
+            </p>
+          </Event>
+
+          <Event
+            title="Water Wednesday, Part 2: beach bonfire with clam
+            bake and pizza dinner"
+            location="Asilomar State Beach"
+            address="Sunset Dr and Asilomar Beach trail, Pacific Grove, CA"
+            directions="https://www.google.com/maps/dir//Asilomar+State+Beach,+Sunset+Dr,+Pacific+Grove,+CA+93950/@36.6180088,-121.9419115,15z/data=!4m16!1m6!3m5!1s0x0:0xbd02e27eb1cc42b8!2sAsilomar+State+Beach!8m2!3d36.6180088!4d-121.9419115!4m8!1m0!1m5!1m1!1s0x808de125fdd7c0f5:0xbd02e27eb1cc42b8!2m2!1d-121.9419115!2d36.6180088!3e2"
+            setLocation={() => {
+              setCurrentMap({
+                center: [-121.941165, 36.618833],
+                zoom: 14,
+                title: 'Asilomar Beach',
+                directions:
+                  'https://www.google.com/maps/dir//Asilomar+State+Beach,+Sunset+Dr,+Pacific+Grove,+CA+93950/@36.6180088,-121.9419115,15z/data=!4m16!1m6!3m5!1s0x0:0xbd02e27eb1cc42b8!2sAsilomar+State+Beach!8m2!3d36.6180088!4d-121.9419115!4m8!1m0!1m5!1m1!1s0x808de125fdd7c0f5:0xbd02e27eb1cc42b8!2m2!1d-121.9419115!2d36.6180088!3e2',
+                content: (
+                  <>
+                    <p>Meet on the beach of Asilomar.</p>
+                  </>
+                ),
+              })
+            }}
+            alternateLocation="Carmel State Beach"
+            alternateAddress="8th Ave and Scenic Rd, Carmel, CA"
+            setAlternateLocation={() => {
+              setCurrentMap({
+                center: [-121.928781, 36.552483],
+                zoom: 14,
+                title: 'Carmel State Beach 8th street entrance',
+                directions:
+                  'https://www.google.com/maps/dir//Carmel+Beach,+Scenic+Rd,+Carmel-By-The-Sea,+CA+93923/@36.5523329,-121.9286323,101m/data=!3m1!1e3!4m9!4m8!1m0!1m5!1m1!1s0x808de717bb4ff291:0x8f8fae2b0d28ec72!2m2!1d-121.9287101!2d36.5524694!3e2',
+                content: (
+                  <>
+                    <p>Meet near the 8th street entrance.</p>
+                  </>
+                ),
+              })
+            }}
+            time="6pm — whenever!"
           >
             <p>
               Meet at Carmel State Beach or Asilomar State Beach (depending on
@@ -337,6 +423,7 @@ const WeekPage = () => {
             title="Whale watching cruise from Monterey Harbor"
             location="Monterey Bay Whale Watch on Fisherman’s Wharf"
             address="84 Fishermans Wharf, Monterey, CA"
+            directions="https://www.google.com/maps/dir//Monterey+Bay+Whale+Watch,+84+Fishermans+Wharf,+Monterey,+CA+93940/@36.60487,-121.892087,15z/data=!4m16!1m6!3m5!1s0x0:0x4efea38d1612b19f!2sMonterey+Bay+Whale+Watch!8m2!3d36.60487!4d-121.892087!4m8!1m0!1m5!1m1!1s0x808de41866710ba3:0x4efea38d1612b19f!2m2!1d-121.892087!2d36.60487!3e2"
             rsvp={true}
             setLocation={() => {
               setCurrentMap({
@@ -358,7 +445,13 @@ const WeekPage = () => {
                 ),
               })
             }}
-            time="8:30am to 1pm"
+            time={
+              <>
+                Meet at Monterey Bay Whale Watch on Fisherman’s Wharf at 8:30am
+                <br />
+                On the Water 9am - 1pm
+              </>
+            }
           >
             <p>$50/person</p>
           </Event>
@@ -369,6 +462,7 @@ const WeekPage = () => {
             title="Hike up Buzzard’s Roost in Big Sur"
             location="Pfeiffer Big Sur State Park, Day Use Parking Lot # 2"
             address="Pfeiffer Big Sur Rd, Big Sur, CA"
+            directions="https://www.google.com/maps/dir//Day+Use+Lot+%232,+Pfeiffer+Big+Sur+Rd,+Big+Sur,+CA+93920/@36.2503408,-121.7810923,15z/data=!4m16!1m6!3m5!1s0x0:0x8c9f45bbfd5c5d20!2sDay+Use+Lot+%232!8m2!3d36.2503408!4d-121.7810923!4m8!1m0!1m5!1m1!1s0x808d856c68df2cf3:0x8c9f45bbfd5c5d20!2m2!1d-121.7810923!2d36.2503408!3e2"
             setLocation={() => {
               setCurrentMap({
                 center: [-121.7812442, 36.2503249],
@@ -383,7 +477,7 @@ const WeekPage = () => {
                 ),
               })
             }}
-            time="3pm - 6pm"
+            time="3pm — 6pm"
           >
             <p>
               Three miles roundtrip (
@@ -399,9 +493,10 @@ const WeekPage = () => {
           </Event>
 
           <Event
-            title="Pumpkin carving and marshmallow roasting"
+            title="Pumpkin carving and marshmallow roasting in Big Sur"
             location="Pfeiffer Big Sur State Park, Campsite #106"
             address="Pfeiffer Big Sur Rd, Big Sur, CA"
+            directions="https://www.google.com/maps/dir//Pfeiffer+Big+Sur+Campground,+Pfeiffer+Big+Sur+Rd,+Big+Sur,+CA+93920/@36.2428576,-121.7767427,15z/data=!4m16!1m6!3m5!1s0x0:0xcebbb5c1ea476a7b!2sPfeiffer+Big+Sur+Campground!8m2!3d36.2428576!4d-121.7767427!4m8!1m0!1m5!1m1!1s0x808d8511e3187d39:0xcebbb5c1ea476a7b!2m2!1d-121.7767427!2d36.2428576!3e2"
             setLocation={() => {
               setCurrentMap({
                 center: [-121.772157, 36.246331],
@@ -416,7 +511,7 @@ const WeekPage = () => {
                 ),
               })
             }}
-            time="6pm - whenever!"
+            time="6pm — whenever!"
           ></Event>
 
           <DayHeader id="oct-30">Saturday, October 30</DayHeader>
@@ -429,6 +524,7 @@ const WeekPage = () => {
             title="Halloween float and brunch picnic"
             location="Lovers Point Park"
             address="631 Ocean View Blvd, Pacific Grove, CA"
+            directions="https://www.google.com/maps/dir//Lovers+Point+Park,+631+Ocean+View+Blvd,+Pacific+Grove,+CA+93950/@36.6261619,-121.9163682,15z/data=!4m16!1m6!3m5!1s0x0:0x48028ef2b9b860bb!2sLovers+Point+Park!8m2!3d36.6261619!4d-121.9163682!4m8!1m0!1m5!1m1!1s0x808de145db4dcb25:0x48028ef2b9b860bb!2m2!1d-121.9163682!2d36.6261619!3e2"
             setLocation={() => {
               setCurrentMap({
                 center: [-121.916704, 36.626087],
@@ -443,7 +539,7 @@ const WeekPage = () => {
                 ),
               })
             }}
-            time="1 pm - whenever!"
+            time="1 pm — whenever!"
           >
             <p>
               Bring your Halloween costumes, wetsuits and ocean toys, and a
