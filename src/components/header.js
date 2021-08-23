@@ -142,9 +142,6 @@ const Header = ({ hideKemily = false, hasHero = false }) => {
                 <Link to="/photos">Photos</Link>
               </li>
               <li>
-                <Link to="/give">Give</Link>
-              </li>
-              <li>
                 <Link to="/rsvp">RSVP</Link>
               </li>
             </ul>
