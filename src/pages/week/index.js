@@ -208,63 +208,41 @@ const WeekPage = () => {
               Print this schedule
             </PrintButton>
           </p>
-          <DayHeader id="oct-23">Saturday, October 23</DayHeader>
+          <DayHeader id="oct-24">Sunday, October 24</DayHeader>
           <Event
-            title="Potluck dinner"
-            location="Lou and Cheryl’s house"
-            address="137 18th Street, Pacific Grove, CA"
-            rsvp={true}
-            directions="https://www.google.com/maps/place/137+18th+St,+Pacific+Grove,+CA+93950/data=!4m2!3m1!1s0x808de14f2c38b7bf:0x56f3e9cee3b9a080?sa=X&ved=2ahUKEwj_tsSej7vyAhWTLH0KHdo2DIQQ8gF6BAgLEAE"
+            title="Play-in-a-day"
+            location="Search Ranch"
+            address="21621 Tassajara Rd, Carmel Valley, CA"
+            directions="https://www.google.com/maps/dir/36.6013782,-121.8676458/21621+Tassajara+Rd,+Carmel+Valley,+CA+93924/@36.4986584,-121.8868147,11z/data=!3m1!4b1!4m9!4m8!1m1!4e1!1m5!1m1!1s0x8092768731669f87:0xf84c11ada75d67c3!2m2!1d-121.5805132!2d36.3955193"
             setLocation={() => {
               setCurrentMap({
-                center: [-121.9186859, 36.6230186],
+                center: [-121.5827019, 36.3955193],
                 zoom: 14,
-                title: "Lou and Cheryl's",
+                title: 'Search Ranch',
                 directions:
-                  'https://www.google.com/maps/place/137+18th+St,+Pacific+Grove,+CA+93950/data=!4m2!3m1!1s0x808de14f2c38b7bf:0x56f3e9cee3b9a080?sa=X&ved=2ahUKEwj_tsSej7vyAhWTLH0KHdo2DIQQ8gF6BAgLEAE',
+                  'https://www.google.com/maps/dir/36.6013782,-121.8676458/21621+Tassajara+Rd,+Carmel+Valley,+CA+93924/@36.4986584,-121.8868147,11z/data=!3m1!4b1!4m9!4m8!1m1!4e1!1m5!1m1!1s0x8092768731669f87:0xf84c11ada75d67c3!2m2!1d-121.5805132!2d36.3955193',
                 content: (
                   <>
                     <p>
-                      Use the address{' '}
-                      <code>137 18th Street, Pacific Grove</code>.
+                      Turn right on Tassajara Road from Carmel Valley Road. You
+                      will see signs soon on the left directing you.
                     </p>
                   </>
                 ),
               })
             }}
-            time="6pm — whenever!"
-          >
-            <p>If you can, bring a dish to share</p>
-          </Event>
-          <PageBreak />
-          <DayHeader id="oct-24">Sunday, October 24</DayHeader>
-          <Event
-            title="Kayak or stand-up paddle board"
-            location="On the beach in front of Monterey Bay Kayaks"
-            address="693 Del Monte Ave, Monterey, CA 93940"
-            directions="https://www.google.com/maps/dir//monterey+bay+kayaks+monterey+ca/@36.5913751,-121.8906389,15z/data=!3m1!5s0x808de43c840181a9:0xe7c5bbbc4e6af616!4m8!4m7!1m0!1m5!1m1!1s0x808de43c9134103f:0xee1bedb7ac00da4b!2m2!1d-121.8880403!2d36.6005081"
-            setLocation={() => {
-              setCurrentMap({
-                center: [-121.888107, 36.60026],
-                zoom: 14,
-                title: 'Monterey Bay Kayaks',
-                directions:
-                  'https://www.google.com/maps/dir//monterey+bay+kayaks+monterey+ca/@36.5913751,-121.8906389,15z/data=!3m1!5s0x808de43c840181a9:0xe7c5bbbc4e6af616!4m8!4m7!1m0!1m5!1m1!1s0x808de43c9134103f:0xee1bedb7ac00da4b!2m2!1d-121.8880403!2d36.6005081',
-                content: (
-                  <>
-                    <p>Meet in front of Monterey Bay Kayaks.</p>
-                  </>
-                ),
-              })
-            }}
-            time="10am — whenever!"
+            time="6pm"
           >
             <p>
-              Watercraft rentals $35-45 (4 hours) from{' '}
-              <a href="https://www.montereybaykayaks.com/">
-                Monterey Bay Kayaks
-              </a>
-              , 693 Del Monte Avenue, Monterey
+              The tradition of a group of friends putting on a single classical
+              play in a single day continues. This year, we will be enthralling
+              the audience with a rendition of Shakespeare's <em>Macbeth</em> in
+              1980s Wall Street.
+            </p>
+            <p>
+              If you would like to help acting in or playing a supporting role
+              in this produciton, we will be at Search Ranch starting at 10am.
+              The play begins at 6pm!
             </p>
           </Event>
           <PageBreak />
