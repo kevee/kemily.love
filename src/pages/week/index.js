@@ -231,7 +231,7 @@ const WeekPage = () => {
                 ),
               })
             }}
-            time="6pm"
+            time="Potluck at 5pm, show starts at 6pm"
           >
             <p>
               The tradition of a group of friends putting on a single classical
@@ -242,7 +242,8 @@ const WeekPage = () => {
             <p>
               If you would like to help acting in or playing a supporting role
               in this produciton, we will be at Search Ranch starting at 10am.
-              The play begins at 6pm!
+              We'll be having a potluck for cast, crew, and audience members at
+              5pm, and show starts 6pm!
             </p>
           </Event>
           <PageBreak />
@@ -305,8 +306,12 @@ const WeekPage = () => {
 
           <PageBreak />
           <DayHeader id="oct-27">Wednesday, October 27</DayHeader>
+          <p>
+            We will choose between plan A and B for part 1 as we get closer to
+            the event and can forecast conditions!
+          </p>
           <Event
-            title="Water Wednesday, Part 1: surf, boogie board, snorkel or just splash around!"
+            title="Water Wednesday, Part 1 (Plan A): surf, boogie board, snorkel or just splash around!"
             location="Asilomar State Beach"
             address="Sunset Dr and Asilomar Beach trail, Pacific Grove, CA"
             directions="https://www.google.com/maps/dir//Asilomar+State+Beach,+Sunset+Dr,+Pacific+Grove,+CA+93950/@36.6180088,-121.9419115,15z/data=!4m16!1m6!3m5!1s0x0:0xbd02e27eb1cc42b8!2sAsilomar+State+Beach!8m2!3d36.6180088!4d-121.9419115!4m8!1m0!1m5!1m1!1s0x808de125fdd7c0f5:0xbd02e27eb1cc42b8!2m2!1d-121.9419115!2d36.6180088!3e2"
@@ -348,6 +353,36 @@ const WeekPage = () => {
                 On the Beach Surf Shop
               </a>
               , 693 Lighthouse Ave, Monterey.
+            </p>
+          </Event>
+
+          <Event
+            title="Water Wednesday, Part 1 (Plan B): Kayak or stand-up paddle board"
+            location="On the beach in front of Monterey Bay Kayaks"
+            address="693 Del Monte Ave, Monterey, CA 93940"
+            directions="https://www.google.com/maps/dir//monterey+bay+kayaks+monterey+ca/@36.5913751,-121.8906389,15z/data=!3m1!5s0x808de43c840181a9:0xe7c5bbbc4e6af616!4m8!4m7!1m0!1m5!1m1!1s0x808de43c9134103f:0xee1bedb7ac00da4b!2m2!1d-121.8880403!2d36.6005081"
+            setLocation={() => {
+              setCurrentMap({
+                center: [-121.888107, 36.60026],
+                zoom: 14,
+                title: 'Monterey Bay Kayaks',
+                directions:
+                  'https://www.google.com/maps/dir//monterey+bay+kayaks+monterey+ca/@36.5913751,-121.8906389,15z/data=!3m1!5s0x808de43c840181a9:0xe7c5bbbc4e6af616!4m8!4m7!1m0!1m5!1m1!1s0x808de43c9134103f:0xee1bedb7ac00da4b!2m2!1d-121.8880403!2d36.6005081',
+                content: (
+                  <>
+                    <p>Meet in front of Monterey Bay Kayaks.</p>
+                  </>
+                ),
+              })
+            }}
+            time="10am — whenever!"
+          >
+            <p>
+              Watercraft rentals $35-45 (4 hours) from{' '}
+              <a href="https://www.montereybaykayaks.com/">
+                Monterey Bay Kayaks
+              </a>
+              , 693 Del Monte Avenue, Monterey
             </p>
           </Event>
 
