@@ -112,8 +112,8 @@ const PartyPage = () => {
           <h2 id="plans">Plans</h2>
           <h3>Friday, October 29: Day before the Love Party</h3>
           <p>
-            We welcome you to arrive in Big Sur the day before the Love Party.
-            Campers will be able to check into the campsites at{' '}
+            On Friday, we welcome you to arrive in Big Sur the day before the
+            Love Party. Campers will be able to check into the campsites at{' '}
             <ModalButton
               onClick={() => {
                 setCurrentMap(pfeifferDirections)
@@ -121,19 +121,22 @@ const PartyPage = () => {
             >
               Pfeiffer Big Sur State Park
             </ModalButton>{' '}
-            after 2pm. We will plan a short afternoon hike nearby for anyone who
-            wants to join.
+            after 2pm.
+          </p>
+          <p>
+            At 3pm we will meet at the Day Use Parking Lot #2 for a three-mile{' '}
+            <Link to="/week#oct-29">hike up Buzzard's Root trail</Link>.
           </p>
 
           <p>
-            Kevin and Emily will be staying at the campground. Come by for
-            pumpkin carving and marshmallow roasting after sunset.
+            Kevin and Emily will be staying at campsite #106 Friday night. Come
+            by for pumpkin carving and marshmallow roasting after sunset.
           </p>
           <h3>Saturday, October 30: Love Party Day</h3>
           <h4>When and where</h4>
 
           <p>
-            Please arrive at Picnic Area C at{' '}
+            On Saturday, please arrive at Picnic Area C at{' '}
             <ModalButton
               onClick={() => {
                 setCurrentMap(pfeifferDirections)
@@ -141,10 +144,11 @@ const PartyPage = () => {
             >
               Pfeiffer Big Sur State Park
             </ModalButton>{' '}
-            at 11am. The ceremony will begin at 1pm. Food and refreshments will
-            be provided all afternoon. Love Party Lawn Games will take place in
-            the nearby softball field before and after the ceremony. The party
-            at the picnic area will end at 5pm.
+            at 11am. The ceremony will begin at 11:30am. Lunch and refreshments
+            will be provided. Love Party Lawn Games will take place in the
+            nearby softball field after the ceremony. The party at the picnic
+            area will end at 5pm. Everyone is welcome to come to the campsites
+            for trick or treating after 6pm.
           </p>
 
           <h4>Parking</h4>
@@ -157,24 +161,28 @@ const PartyPage = () => {
             Suggested dress code is your interpretation of “Forest Fancy”.
             Basically, wear something that makes you feel fabulous and
             functional for this all-day, outdoor event. We recommend layers and
-            comfortable footwear.{' '}
+            comfortable footwear.
+          </p>
+
+          <p>
+            The average temperature in Big Sur for October is high of 73° and
+            low of 49°. Be prepared for possible rain but obviously keep your
+            fingers crossed for clear skies.
           </p>
 
           <p>If you feel inspired, please also bring:</p>
 
           <ul>
-            <li>
-              Your favorite Smorgasbord items to share. Large wheels of cheeses
-              encouraged!
-            </li>
+            <li>Halloween costume for the evening</li>
             <li>Lawn games to share</li>
-            <li>Fun pictures of you with Emily &amp; Kevin</li>
-            <li>A Halloween costume </li>
             <li>Camping chairs</li>
           </ul>
-          <h3>Sunday, October 31: Love Party Hallowedding Float</h3>
+          <h3>
+            Sunday, October 31: Love Party Hallowedding Float &amp; Brunch
+            Picnic
+          </h3>
           <p>
-            We will pack up the party and head to{' '}
+            On Sunday, we will pack up the party and head to{' '}
             <ModalButton
               onClick={() => {
                 setCurrentMap(loversPointDirections)
@@ -182,13 +190,13 @@ const PartyPage = () => {
             >
               Lover's Point
             </ModalButton>{' '}
-            in the afternoon for a Halloween costume float. Bring along:
+            in the afternoon for a Halloween costume float. A light brunch will
+            be provided at 1pm. Bring along:
           </p>
           <ul>
             <li>Halloween costume</li>
             <li>Snorkel gear</li>
-            <li>Snacks to share</li>
-            <li>Blankets</li>
+            <li>Blankets and camp chairs to sit on</li>
             <li>Anything that floats in the ocean</li>
           </ul>
           <h2 id="lodging">Lodging</h2>
