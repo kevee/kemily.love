@@ -210,9 +210,9 @@ const WeekPage = () => {
           </p>
           <DayHeader id="oct-24">Sunday, October 24</DayHeader>
           <Event
-            title="Play-in-a-day"
+            title="Search Ranch Tea and lunch"
             location="Search Ranch"
-            address="21621 Tassajara Rd, Carmel Valley, CA"
+            address="37301 Tassajara Rd, Carmel Valley, CA"
             directions="https://www.google.com/maps/dir/36.6013782,-121.8676458/21621+Tassajara+Rd,+Carmel+Valley,+CA+93924/@36.4986584,-121.8868147,11z/data=!3m1!4b1!4m9!4m8!1m1!4e1!1m5!1m1!1s0x8092768731669f87:0xf84c11ada75d67c3!2m2!1d-121.5805132!2d36.3955193"
             setLocation={() => {
               setCurrentMap({
@@ -231,19 +231,11 @@ const WeekPage = () => {
                 ),
               })
             }}
-            time="Potluck at 5pm, show starts at 6pm"
+            time="12 noon"
           >
             <p>
-              The tradition of a group of friends putting on a single classical
-              play in a single day continues. This year, we will be enthralling
-              the audience with a rendition of Shakespeare's <em>Macbeth</em> in
-              1980s Wall Street.
-            </p>
-            <p>
-              If you would like to help acting in or playing a supporting role
-              in this produciton, we will be at Search Ranch starting at 10am.
-              We'll be having a potluck for cast, crew, and audience members at
-              5pm, and show starts 6pm!
+              Join us for mid-day tea, snacks, and games at Search Ranch in
+              Cachagua. Bring a rain coat!
             </p>
           </Event>
           <PageBreak />
@@ -306,41 +298,24 @@ const WeekPage = () => {
 
           <PageBreak />
           <DayHeader id="oct-27">Wednesday, October 27</DayHeader>
-          <p>
-            We will choose between plan A and B for part 1 as we get closer to
-            the event and can forecast conditions!
-          </p>
           <Event
-            title="Water Wednesday, Part 1 (Plan A): surf, boogie board, snorkel or just splash around!"
-            location="Asilomar State Beach"
-            address="Sunset Dr and Asilomar Beach trail, Pacific Grove, CA"
+            title="Water Wednesday, Part 1: Surfing and kayaking at the Monterey Wharf"
+            location="Monterey Municipal Wharf 2"
+            address="Municipal Wharf 2, Monterey, CA"
             directions="https://www.google.com/maps/dir//Asilomar+State+Beach,+Sunset+Dr,+Pacific+Grove,+CA+93950/@36.6180088,-121.9419115,15z/data=!4m16!1m6!3m5!1s0x0:0xbd02e27eb1cc42b8!2sAsilomar+State+Beach!8m2!3d36.6180088!4d-121.9419115!4m8!1m0!1m5!1m1!1s0x808de125fdd7c0f5:0xbd02e27eb1cc42b8!2m2!1d-121.9419115!2d36.6180088!3e2"
             setLocation={() => {
               setCurrentMap({
-                center: [-121.941165, 36.618833],
+                center: [-121.889569, 36.601335],
                 zoom: 14,
-                title: 'Asilomar Beach',
+                title: 'Monterey Municipal Wharf 2',
                 directions:
-                  'https://www.google.com/maps/dir//Asilomar+State+Beach,+Sunset+Dr,+Pacific+Grove,+CA+93950/@36.6180088,-121.9419115,15z/data=!4m16!1m6!3m5!1s0x0:0xbd02e27eb1cc42b8!2sAsilomar+State+Beach!8m2!3d36.6180088!4d-121.9419115!4m8!1m0!1m5!1m1!1s0x808de125fdd7c0f5:0xbd02e27eb1cc42b8!2m2!1d-121.9419115!2d36.6180088!3e2',
+                  'https://www.google.com/maps/dir//Municipal+Wharf+2,+Monterey,+CA+93940/@36.6032726,-121.891693,17z/data=!4m9!4m8!1m0!1m5!1m1!1s0x808de43cc9cf4f51:0xabe8579d83a757ed!2m2!1d-121.8895043!2d36.6032726!3e0',
                 content: (
                   <>
-                    <p>Meet on the beach of Asilomar.</p>
-                  </>
-                ),
-              })
-            }}
-            alternateLocation="Carmel State Beach"
-            alternateAddress="8th Ave and Scenic Rd, Carmel, CA"
-            setAlternateLocation={() => {
-              setCurrentMap({
-                center: [-121.928781, 36.552483],
-                zoom: 14,
-                title: 'Carmel State Beach 8th street entrance',
-                directions:
-                  'https://www.google.com/maps/dir//Carmel+Beach,+Scenic+Rd,+Carmel-By-The-Sea,+CA+93923/@36.5523329,-121.9286323,101m/data=!3m1!1e3!4m9!4m8!1m0!1m5!1m1!1s0x808de717bb4ff291:0x8f8fae2b0d28ec72!2m2!1d-121.9287101!2d36.5524694!3e2',
-                content: (
-                  <>
-                    <p>Meet near the 8th street entrance.</p>
+                    <p>
+                      Park near the wharf and meet us on the beach right next to
+                      the wharf.
+                    </p>
                   </>
                 ),
               })
@@ -348,41 +323,15 @@ const WeekPage = () => {
             time="1pm — 6pm"
           >
             <p>
+              Meet at the Monterey Municipal Wharf for surfing, or rent Kayaks
+              from nearby Monterey Bay Kayaks.
+            </p>
+            <p>
               Board and wetsuit rentals $15-30/day from{' '}
               <a href="http://onthebeachsurfshop.com/">
                 On the Beach Surf Shop
               </a>
               , 693 Lighthouse Ave, Monterey.
-            </p>
-          </Event>
-
-          <Event
-            title="Water Wednesday, Part 1 (Plan B): Kayak or stand-up paddle board"
-            location="On the beach in front of Monterey Bay Kayaks"
-            address="693 Del Monte Ave, Monterey, CA 93940"
-            directions="https://www.google.com/maps/dir//monterey+bay+kayaks+monterey+ca/@36.5913751,-121.8906389,15z/data=!3m1!5s0x808de43c840181a9:0xe7c5bbbc4e6af616!4m8!4m7!1m0!1m5!1m1!1s0x808de43c9134103f:0xee1bedb7ac00da4b!2m2!1d-121.8880403!2d36.6005081"
-            setLocation={() => {
-              setCurrentMap({
-                center: [-121.888107, 36.60026],
-                zoom: 14,
-                title: 'Monterey Bay Kayaks',
-                directions:
-                  'https://www.google.com/maps/dir//monterey+bay+kayaks+monterey+ca/@36.5913751,-121.8906389,15z/data=!3m1!5s0x808de43c840181a9:0xe7c5bbbc4e6af616!4m8!4m7!1m0!1m5!1m1!1s0x808de43c9134103f:0xee1bedb7ac00da4b!2m2!1d-121.8880403!2d36.6005081',
-                content: (
-                  <>
-                    <p>Meet in front of Monterey Bay Kayaks.</p>
-                  </>
-                ),
-              })
-            }}
-            time="10am — whenever!"
-          >
-            <p>
-              Watercraft rentals $35-45 (4 hours) from{' '}
-              <a href="https://www.montereybaykayaks.com/">
-                Monterey Bay Kayaks
-              </a>
-              , 693 Del Monte Avenue, Monterey
             </p>
           </Event>
 
