@@ -35,6 +35,10 @@ const SharePage = () => {
                   maxFiles: 200,
                   accept: ['image/*', 'video/*'],
                   disableTransformer: true,
+                  cleanupImageExif: {
+                    keepOrientation: true,
+                    keepICCandAPP: true,
+                  },
                   onUploadDone(result) {
                     console.log(result)
                     setSuccess(true)
