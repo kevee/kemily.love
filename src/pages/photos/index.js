@@ -11,6 +11,7 @@ import {
 import '@reach/dialog/styles.css'
 import Layout from '../../components/layout'
 import Container from '../../components/container'
+import colors from '../../style/colors'
 
 const ImageMasonry = styled(Masonry)`
   display: flex;
@@ -27,6 +28,12 @@ const ImageMasonry = styled(Masonry)`
 
 const ClickableImage = styled.div`
   cursor: pointer;
+  &:hover {
+    img {
+      border: 8px solid ${colors.rose};
+      box-sizing: border-box;
+    }
+  }
 `
 
 const LargeImage = styled.img`
@@ -94,16 +101,10 @@ const PhotosPage = () => {
             >
               Close
             </CloseButton>
-            <LargeImage
-              src={`http://kemily-love.s3.us-east-2.amazonaws.com/${selected.Key}`}
-              alt=""
-            />
+            <GatsbyImage image={getImage(selected)} alt="" aria-hidden />
             <p>
               By {toTitleCase(selected.Key.split('/')[1].replace('-', ' '))}.{' '}
-              <a
-                href={`http://kemily-love.s3.us-east-2.amazonaws.com/${selected.Key}`}
-                download={selected.Key.split('/').pop()}
-              >
+              <a href={`/download-photo/${selected.Key}`} download>
                 Download image
               </a>
             </p>
