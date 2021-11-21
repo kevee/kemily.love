@@ -46,6 +46,8 @@ module.exports = {
     {
       resolve: 'gatsby-source-s3-image',
       options: {
+        accessKeyId: process.env.ENV_ACCESS_KEY_ID,
+        secretAccessKey: process.env.ENV_SECRET_ACCESS_KEY,
         bucketName: 'kemily-love',
         region: 'us-east-2',
       },
