@@ -74,7 +74,15 @@ const SharePage = () => {
                       keepICCandAPP: true,
                     },
                     onUploadDone(result) {
-                      console.log(result)
+                      window.fetch({
+                        url:
+                          'https://api.netlify.com/build_hooks/6199c44abe4542474242b322',
+                        method: 'post',
+                        headers: {
+                          'Content-Type': 'application/json',
+                        },
+                        body: '{}',
+                      })
                       setSuccess(true)
                     },
                     storeTo: {
