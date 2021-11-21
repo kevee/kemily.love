@@ -1,10 +1,11 @@
-import * as React from 'react'
+import React, { useState } from 'react'
 import { useStaticQuery, graphql } from 'gatsby'
 import { GatsbyImage, getImage } from 'gatsby-plugin-image'
 import Masonry from 'react-masonry-css'
 import styled from '@emotion/styled'
-import Layout from '../components/layout'
-import Container from '../components/container'
+import '@reach/dialog/styles.css'
+import Layout from '../../components/layout'
+import Container from '../../components/container'
 
 const ImageMasonry = styled(Masonry)`
   display: flex;
@@ -19,9 +20,36 @@ const ImageMasonry = styled(Masonry)`
   }
 `
 
+const ClickableImage = styled.div`
+  cursor: pointer;
+`
+
+const LargeImage = styled.img`
+  margin-top: 0.5rem;
+  margin-bottom: 0;
+`
+
+const toTitleCase = (str) =>
+  str.replace(/\w\S*/g, function (txt) {
+    return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase()
+  })
+
 const PhotosPage = () => {
+  const [selected, setSelected] = useState()
   const data = useStaticQuery(graphql`
     {
+      allS3ImageAsset {
+        nodes {
+          childImageSharp {
+            gatsbyImageData(
+              width: 900
+              placeholder: BLURRED
+              formats: [AUTO, WEBP, AVIF]
+            )
+          }
+          Key
+        }
+      }
       allAirtable(filter: { table: { in: ["RSVP", "Website photos"] } }) {
         nodes {
           data {
@@ -50,7 +78,7 @@ const PhotosPage = () => {
   })
 
   return (
-    <Layout title="Photos" hasHero>
+    <Layout title="Photos">
       <Container>
         <ImageMasonry
           breakpointCols={{

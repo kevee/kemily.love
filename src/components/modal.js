@@ -38,6 +38,7 @@ const ModalWrapper = styled.div`
   right: 0;
   bottom: 0;
   left: 0;
+  z-index: 100;
   background: white;
   overflow: scroll;
   border: 5px solid black;
@@ -57,7 +58,7 @@ const CloseButton = styled.button`
 const ModalContainer = styled.div`
   margin: 0 2rem;
   ${breakpoints.large} {
-    max-width: 500px;
+    max-width: ${(props) => (props.wide ? '800px' : '500px')};
     margin: 0 auto;
   }
 `
@@ -128,4 +129,11 @@ const MapEmbed = ({ center, zoom, onLoad }) => {
 
 export default Modal
 
-export { ModalButton, MapModal, MapEmbed }
+export {
+  ModalContainer,
+  ModalButton,
+  ModalWrapper,
+  CloseButton,
+  MapModal,
+  MapEmbed,
+}

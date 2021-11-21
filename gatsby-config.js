@@ -44,6 +44,13 @@ module.exports = {
       },
     },
     {
+      resolve: 'gatsby-source-s3-image',
+      options: {
+        bucketName: 'kemily-love',
+        region: 'us-east-2',
+      },
+    },
+    {
       resolve: 'gatsby-plugin-typography',
       options: {
         pathToConfigModule: 'src/utils/typography',

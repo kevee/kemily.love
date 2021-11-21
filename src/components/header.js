@@ -139,10 +139,10 @@ const Header = ({ hideKemily = false, hasHero = false }) => {
                 <Link to="/week">Love Week</Link>
               </li>
               <li>
-                <Link to="/photos">Photos</Link>
+                <Link to="/photos">Love Week Photos</Link>
               </li>
               <li>
-                <Link to="/rsvp">RSVP</Link>
+                <Link to="/photos/past">Past Photos</Link>
               </li>
             </ul>
           </Nav>
