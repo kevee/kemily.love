@@ -8,7 +8,6 @@ import {
   ModalContainer,
   ModalWrapper,
 } from '../../components/modal'
-import '@reach/dialog/styles.css'
 import Layout from '../../components/layout'
 import Container from '../../components/container'
 import colors from '../../style/colors'
@@ -101,7 +100,7 @@ const PhotosPage = () => {
             >
               Close
             </CloseButton>
-            <GatsbyImage image={getImage(selected)} alt="" aria-hidden />
+            <GatsbyImage sty image={getImage(selected)} alt="" aria-hidden />
             <p>
               By {toTitleCase(selected.Key.split('/')[1].replace('-', ' '))}.{' '}
               <a href={`/download-photo/${selected.Key}`} download>
