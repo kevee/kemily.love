@@ -51,7 +51,7 @@
     "serve": "gatsby serve",
     "clean": "gatsby clean",
     "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1",
-    "netlify": "echo > ~/.aws/credentials && gatsby build"
+    "netlify": "mkdir ~/.aws && echo > ~/.aws/credentials && gatsby build"
   },
   "repository": {
     "type": "git",
