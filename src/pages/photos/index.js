@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
 import { graphql, Link } from 'gatsby'
-import { GatsbyImage, getImage } from 'gatsby-plugin-image'
 import Masonry from 'react-masonry-css'
 import styled from '@emotion/styled'
 import {
@@ -24,12 +23,22 @@ const ImageMasonry = styled(Masonry)`
 
 const ClickableImage = styled.div`
   cursor: pointer;
+  img {
+    margin: 0;
+    padding: 0;
+    display: block;
+  }
   &:hover {
     img {
       border: 8px solid ${colors.rose};
       box-sizing: border-box;
     }
   }
+`
+
+const ModalImage = styled.img`
+  margin-top: 1rem;
+  display: block;
 `
 
 const toTitleCase = (str) =>
@@ -63,10 +72,10 @@ const PhotosPage = ({ data }) => {
                 >
                   Close
                 </CloseButton>
-                <GatsbyImage
-                  sty
-                  image={getImage(selected)}
+                <ModalImage
+                  src={selected.childImageSharp.fixed.src}
                   alt=""
+                  layout="fullWidth"
                   aria-hidden
                 />
                 <p>
@@ -97,8 +106,8 @@ const PhotosPage = ({ data }) => {
             >
               {data.allS3ImageAsset.nodes.map((photo) => (
                 <ClickableImage>
-                  <GatsbyImage
-                    image={getImage(photo)}
+                  <img
+                    src={photo.childImageSharp.fixed.src}
                     alt=""
                     aria-hidden
                     onClick={() => {
@@ -122,11 +131,9 @@ export const query = graphql`
     allS3ImageAsset {
       nodes {
         childImageSharp {
-          gatsbyImageData(
-            width: 900
-            placeholder: DOMINANT_COLOR
-            formats: [AUTO, WEBP, AVIF]
-          )
+          fixed(width: 800) {
+            src
+          }
         }
         Key
       }

@@ -49,7 +49,6 @@ const ModalWrapper = styled.div`
 
 const CloseButton = styled.button`
   border: 0;
-  float: right;
   background: black;
   color: white;
   cursor: pointer;

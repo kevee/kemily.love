@@ -5,10 +5,12 @@
   "version": "0.1.0",
   "author": "Kyle Mathews <mathews.kyle@gmail.com>",
   "dependencies": {
+    "@aws-sdk/client-s3": "^3.42.0",
     "@emotion/react": "^11.4.0",
     "@emotion/styled": "^11.3.0",
     "@reach/dialog": "^0.16.2",
     "@reach/skip-nav": "^0.15.0",
+    "aws-sdk": "^2.1033.0",
     "dotenv": "^9.0.2",
     "filestack-js": "^3.25.0",
     "gatsby": "^3.4.1",
@@ -53,7 +55,8 @@
     "clean": "gatsby clean",
     "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1",
     "netlify": "gatsby build",
-    "deploy": "gatsby build && gh-pages -d public -b main"
+    "deploy": "gatsby clean && node ./tools/s3.js && gatsby build && echo \"kemily.love\" > ./public/CNAME && cp -r ./_photos ./public/download-photo && gh-pages -d public -b main",
+    "deploy-pages": "gh-pages -d public -b main"
   },
   "repository": {
     "type": "git",
